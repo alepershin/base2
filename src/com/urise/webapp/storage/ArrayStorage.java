@@ -53,6 +53,7 @@ public class ArrayStorage {
                 return storage[i];
             }
         }
+        System.out.println("Резюме не найдено");
         return null;
     }
 
