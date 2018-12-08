@@ -12,8 +12,8 @@ public class ArrayStorage {
     private int size = 0;
 
     public void clear() {
-        for(int i=0;i<size;i++){
-            storage[i]=null;
+        for (int i = 0; i < size; i++) {
+            storage[i] = null;
         }
         size = 0;
     }
@@ -36,8 +36,12 @@ public class ArrayStorage {
             i++;
         }
         if (i == size) {
-            storage[size] = r;
-            size++;
+            if (i < 9_999) {
+                storage[size] = r;
+                size++;
+            } else {
+                System.out.println("ERROR: Переполнение!");
+            }
         } else {
             System.out.println("ERROR: Резюме уже существует");
         }
