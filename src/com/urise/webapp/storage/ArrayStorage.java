@@ -20,30 +20,29 @@ public class ArrayStorage {
 
     public void update(Resume r) {
         // TODO check if resume present
-        int i = 0;
-        while (i < size && !r.equals(storage[i])) {
-            i++;
+        for (int i = 0; i < size; i++) {
+            if (r.getUuid().equals(storage[i].getUuid())) {
+                storage[i]=r;
+                return;
+            }
         }
-        if (i == size) {
-            System.out.println("ERROR: Резюме не найдено");
-        }
+        System.out.println("ERROR: Резюме не найдено");
     }
 
     public void save(Resume r) {
         // TODO check if resume not present
-        int i = 0;
-        while (i < size && r.equals(storage[i]) == false) {
-            i++;
-        }
-        if (i == size) {
-            if (i < 9_999) {
-                storage[size] = r;
-                size++;
-            } else {
-                System.out.println("ERROR: Переполнение!");
+        for (int i = 0; i < size; i++) {
+            if (r.getUuid().equals(storage[i].getUuid())) {
+                System.out.println("ERROR: Резюме уже существует");
+                return;
             }
+        }
+
+        if (size < 9_999) {
+            storage[size] = r;
+            size++;
         } else {
-            System.out.println("ERROR: Резюме уже существует");
+            System.out.println("ERROR: Переполнение");
         }
     }
 
@@ -58,17 +57,15 @@ public class ArrayStorage {
     }
 
     public void delete(String uuid) {
-        int i = 0;
-        while (i < size && storage[i].getUuid() != uuid) {
-            i++;
+        for (int i = 0; i < size; i++) {
+            if (uuid.equals(storage[i].getUuid())) {
+                storage[i] = storage[size - 1];
+                storage[size - 1] = null;
+                size--;
+                return;
+            }
         }
-        if (i == size) {
-            System.out.println("ERROR: Резюме не найдено");
-        } else {
-            storage[i] = storage[size - 1];
-            storage[size - 1] = null;
-            size--;
-        }
+        System.out.println("ERROR: Резюме не найдено");
     }
 
     /**
