@@ -19,7 +19,6 @@ public class ArrayStorage {
     }
 
     public void update(Resume r) {
-        // TODO check if resume present
         for (int i = 0; i < size; i++) {
             if (r.getUuid().equals(storage[i].getUuid())) {
                 storage[i]=r;
@@ -30,7 +29,6 @@ public class ArrayStorage {
     }
 
     public void save(Resume r) {
-        // TODO check if resume not present
         for (int i = 0; i < size; i++) {
             if (r.getUuid().equals(storage[i].getUuid())) {
                 System.out.println("ERROR: Резюме уже существует");
@@ -72,11 +70,7 @@ public class ArrayStorage {
      * @return array, contains only Resumes in storage (without null)
      */
     public Resume[] getAll() {
-        Resume[] st = new Resume[size];
-        for (int i = 0; i < size; i++) {
-            st[i] = storage[i];
-        }
-        return st;
+        return Arrays.stream(storage, 0, size).toArray(Resume[]::new);
     }
 
     public int size() {
