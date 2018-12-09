@@ -21,7 +21,7 @@ public class ArrayStorage {
     public void update(Resume r) {
         for (int i = 0; i < size; i++) {
             if (r.getUuid().equals(storage[i].getUuid())) {
-                storage[i]=r;
+                storage[i] = r;
                 return;
             }
         }

@@ -29,10 +29,16 @@ public class MainTestArrayStorage {
         printAll();
         ARRAY_STORAGE.delete(r1.getUuid());
         printAll();
+
+        ARRAY_STORAGE.update(r2);
+        System.out.println("update(r2)");
+        printAll();
+
         ARRAY_STORAGE.clear();
         printAll();
 
         System.out.println("Size: " + ARRAY_STORAGE.size());
+
     }
 
     static void printAll() {
