@@ -18,26 +18,25 @@ public class ArrayStorage {
         size = 0;
     }
 
-    public void update(Resume r) {
+    public void update(Resume resume) {
         for (int i = 0; i < size; i++) {
-            if (r.getUuid().equals(storage[i].getUuid())) {
-                storage[i] = r;
+            if (resume.getUuid().equals(storage[i].getUuid())) {
+                storage[i] = resume;
                 return;
             }
         }
         System.out.println("ERROR: Резюме не найдено");
     }
 
-    public void save(Resume r) {
+    public void save(Resume resume) {
         for (int i = 0; i < size; i++) {
-            if (r.getUuid().equals(storage[i].getUuid())) {
+            if (resume.getUuid().equals(storage[i].getUuid())) {
                 System.out.println("ERROR: Резюме уже существует");
                 return;
             }
         }
-
         if (size < 9_999) {
-            storage[size] = r;
+            storage[size] = resume;
             size++;
         } else {
             System.out.println("ERROR: Переполнение");
