@@ -8,7 +8,8 @@ import java.util.Arrays;
  * Array based storage for Resumes
  */
 public class ArrayStorage {
-    private Resume[] storage = new Resume[10_000];
+    private int maxCountResume = 10_000;
+    private Resume[] storage = new Resume[maxCountResume];
     private int size = 0;
 
     private int findResume(Resume resume) {
@@ -49,7 +50,7 @@ public class ArrayStorage {
         if (findResume(resume) < size) {
             System.out.println("ERROR: Резюме уже существует");
         } else {
-            if (size < 10_000) {
+            if (size < maxCountResume) {
                 storage[size] = resume;
                 size++;
             } else {
@@ -83,7 +84,7 @@ public class ArrayStorage {
      * @return array, contains only Resumes in storage (without null)
      */
     public Resume[] getAll() {
-        return Arrays.stream(storage, 0, size).toArray(Resume[]::new);
+        return Arrays.copyOfRange(storage, 0, size);
     }
 
     public int size() {
