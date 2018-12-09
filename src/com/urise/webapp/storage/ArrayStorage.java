@@ -8,18 +8,9 @@ import java.util.Arrays;
  * Array based storage for Resumes
  */
 public class ArrayStorage {
-    private int maxCountResume = 10_000;
+    static final int maxCountResume = 10_000;
     private Resume[] storage = new Resume[maxCountResume];
     private int size = 0;
-
-    private int findResume(Resume resume) {
-        for (int i = 0; i < size; i++) {
-            if (resume.getUuid().equals(storage[i].getUuid())) {
-                return i;
-            }
-        }
-        return size;
-    }
 
     private int findUuid(String uuid) {
         for (int i = 0; i < size; i++) {
@@ -38,7 +29,7 @@ public class ArrayStorage {
     }
 
     public void update(Resume resume) {
-        int j = findResume(resume);
+        int j = findUuid(resume.getUuid());
         if (j < size) {
             storage[j] = resume;
         } else {
@@ -47,7 +38,7 @@ public class ArrayStorage {
     }
 
     public void save(Resume resume) {
-        if (findResume(resume) < size) {
+        if (findUuid(resume.getUuid()) < size) {
             System.out.println("ERROR: Резюме уже существует");
         } else {
             if (size < maxCountResume) {
