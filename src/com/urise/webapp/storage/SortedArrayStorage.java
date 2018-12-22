@@ -5,15 +5,6 @@ import com.urise.webapp.model.Resume;
 import java.util.Arrays;
 
 public class SortedArrayStorage extends AbstractArrayStorage {
-    @Override
-    public void clear() {
-
-    }
-
-    @Override
-    public void update(Resume r) {
-
-    }
 
     @Override
     public void save(Resume r) {
@@ -24,10 +15,9 @@ public class SortedArrayStorage extends AbstractArrayStorage {
             System.out.println("Storage overflow");
         } else {
             int i = -index - 1; //Индекс, который должен быть у вставляемого элемента
-            System.out.println("Место вставки элемента " + r.getUuid() + " " + i);
             if (i <= size - 1) {
                 for (int j = size; j > i; j--) {
-                    storage[j] = storage[j-1];
+                    storage[j] = storage[j - 1];
                 }
             }
             storage[i] = r;
@@ -37,7 +27,16 @@ public class SortedArrayStorage extends AbstractArrayStorage {
 
     @Override
     public void delete(String uuid) {
-
+        int index = getIndex(uuid);
+        if (index < 0) {
+            System.out.println("Resume " + uuid + " not exist");
+        } else {
+            for (int i = index; i < size - 1; i++) {
+                storage[i] = storage[i + 1]
+            }
+            storage[size - 1] = null;
+            size--;
+        }
     }
 
     @Override
