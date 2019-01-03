@@ -28,9 +28,15 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
     }
 
     @Override
-    public Resume doGet(Object index){
+    public Resume doGet(Object index) {
         return storage[(Integer) index];
     }
+
+    @Override
+    protected Boolean isExist(Object index) {
+        return (Integer) index > -1;
+    }
+
 
     @Override
     public void doSave(Resume r, Object searchKey) {
