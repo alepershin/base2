@@ -44,9 +44,7 @@ public abstract class AbstractArrayStorageTest {
 
     @Test
     public void get() throws Exception {
-        storage.get("uuid1");
-        storage.get("uuid2");
-        storage.get("uuid3");
+        assertEquals(RESUME_1, storage.get("uuid1"));
     }
 
     @Test(expected = NotExistStorageException.class)
@@ -99,7 +97,7 @@ public abstract class AbstractArrayStorageTest {
                 storage.save(new Resume());
             }
         } catch (StorageException e) {
-            Assert.fail();
+            Assert.fail("Array overflow!");
         }
         storage.save(new Resume());
     }
