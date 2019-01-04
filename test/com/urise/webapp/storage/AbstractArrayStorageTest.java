@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
 
 public abstract class AbstractArrayStorageTest {
     private Storage storage;
@@ -44,12 +45,12 @@ public abstract class AbstractArrayStorageTest {
 
     @Test
     public void get() throws Exception {
-        assertEquals(RESUME_1, storage.get("uuid1"));
+        assertEquals(RESUME_1, storage.get(RESUME_1.getUuid()));
     }
 
     @Test(expected = NotExistStorageException.class)
     public void getNotExist() throws Exception {
-        storage.get("uuid4");
+        storage.get(RESUME_4.getUuid());
     }
 
     @Test
@@ -69,13 +70,12 @@ public abstract class AbstractArrayStorageTest {
     public void update() throws Exception {
         Resume newResume = new Resume(UUID_1);
         storage.update(newResume);
-        assertEquals(RESUME_1, newResume);
+        assertSame(RESUME_1.getUuid(), newResume.getUuid());
     }
 
     @Test(expected = NotExistStorageException.class)
     public void updateNotExist() throws Exception {
-        Resume newResume = new Resume(UUID_4);
-        storage.update(newResume);
+        storage.update(RESUME_4);
     }
 
     @Test
