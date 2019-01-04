@@ -37,7 +37,6 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
         return (Integer) index > -1;
     }
 
-
     @Override
     public void doSave(Resume r, Object searchKey) {
         if (size >= STORAGE_LIMIT) {
