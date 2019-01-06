@@ -34,22 +34,33 @@ public class MapStorage extends AbstractStorage {
     }
 
     @Override
-    protected Boolean isExist(Object uuid) {
-        return map.containsKey((String) uuid);
-    }
-
-    @Override
     public void clear() {
         map.clear();
     }
 
     @Override
     public Resume[] getAll() {
-        return (Resume[]) map.values().toArray();
+        Resume[] result = new Resume[map.size()];
+        int i = 0;
+        for (String str : map.keySet()) {
+            result[i] = map.get(str);
+            i++;
+        }
+        return result;
     }
 
     @Override
     public int size() {
         return map.size();
+    }
+
+    @Override
+    protected boolean isExist(Object uuid) {
+        for (String str : map.keySet()) {
+            if (uuid == str) {
+                return true;
+            }
+        }
+        return false;
     }
 }

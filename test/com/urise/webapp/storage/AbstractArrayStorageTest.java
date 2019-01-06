@@ -54,17 +54,17 @@ public abstract class AbstractArrayStorageTest {
     }
 
     @Test
-    public void clear() throws Exception {
-        storage.clear();
-        assertEquals(0, storage.size());
-    }
-
-    @Test
     public void getAll() throws Exception {
         Resume[] array = storage.getAll();
         Resume[] resumes = {RESUME_1, RESUME_2, RESUME_3};
         Assert.assertTrue(storage.size() == array.length);
         Assert.assertArrayEquals(resumes, array);
+    }
+
+    @Test
+    public void clear() throws Exception {
+        storage.clear();
+        assertEquals(0, storage.size());
     }
 
     @Test

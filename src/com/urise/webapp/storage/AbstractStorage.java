@@ -15,7 +15,7 @@ public abstract class AbstractStorage implements Storage {
 
     protected abstract Object doGet(Object searchKey);
 
-    protected abstract Boolean isExist(Object searchKey);
+    protected abstract boolean isExist(Object searchKey);
 
     public void update(Resume r) {
         Object searchKey = getExistedSearchKey(r.getUuid());

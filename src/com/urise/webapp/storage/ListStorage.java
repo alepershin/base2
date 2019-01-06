@@ -18,11 +18,6 @@ public class ListStorage extends AbstractStorage {
     }
 
     @Override
-    protected Boolean isExist(Object searchKey) {
-        return searchKey != null;
-    }
-
-    @Override
     protected void doUpdate(Resume r, Object searchKey) {
         list.set((Integer) searchKey, r);
     }
@@ -56,4 +51,10 @@ public class ListStorage extends AbstractStorage {
     public int size() {
         return list.size();
     }
+
+    @Override
+    protected boolean isExist(Object searchKey) {
+        return searchKey != null;
+    }
+
 }

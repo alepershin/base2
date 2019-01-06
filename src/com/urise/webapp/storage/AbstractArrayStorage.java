@@ -33,11 +33,6 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
     }
 
     @Override
-    protected Boolean isExist(Object index) {
-        return (Integer) index > -1;
-    }
-
-    @Override
     public void doSave(Resume r, Object searchKey) {
         if (size >= STORAGE_LIMIT) {
             throw new StorageException("Storage overflow", r.getUuid());
@@ -57,6 +52,11 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
     @Override
     protected void doUpdate(Resume r, Object searchKey) {
         storage[(Integer) searchKey] = r;
+    }
+
+    @Override
+    protected boolean isExist(Object index) {
+        return (Integer) index > -1;
     }
 
     protected abstract void insertElement(Resume r, int index);
