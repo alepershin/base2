@@ -40,13 +40,7 @@ public class MapStorage extends AbstractStorage {
 
     @Override
     public Resume[] getAll() {
-        Resume[] result = new Resume[map.size()];
-        int i = 0;
-        for (String str : map.keySet()) {
-            result[i] = map.get(str);
-            i++;
-        }
-        return result;
+        return map.values().toArray(new Resume[0]);
     }
 
     @Override
@@ -56,10 +50,8 @@ public class MapStorage extends AbstractStorage {
 
     @Override
     protected boolean isExist(Object uuid) {
-        for (String str : map.keySet()) {
-            if (uuid == str) {
-                return true;
-            }
+        if (map.get(uuid) != null) {
+            return true;
         }
         return false;
     }
