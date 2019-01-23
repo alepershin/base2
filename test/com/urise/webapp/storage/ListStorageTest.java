@@ -3,7 +3,6 @@ package com.urise.webapp.storage;
 import com.urise.webapp.exception.ExistStorageException;
 import com.urise.webapp.exception.NotExistStorageException;
 import com.urise.webapp.model.Resume;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -42,6 +41,7 @@ public class ListStorageTest {
         assertEquals(RESUME_1, list.get(RESUME_1.getUuid()));
     }
 
+/*
     @Test
     public void getAll() {
         Resume[] array = list.getAll();
@@ -49,6 +49,7 @@ public class ListStorageTest {
         Assert.assertTrue(list.size() == array.length);
         Assert.assertArrayEquals(resumes, array);
     }
+*/
 
     @Test(expected = NotExistStorageException.class)
     public void getNotExist() throws Exception {

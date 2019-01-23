@@ -31,32 +31,43 @@ public class MainArray {
                 uuid = params[1].intern();
             }
             switch (params[0]) {
+/*
                 case "list":
                     printAll();
+
                     break;
+*/
                 case "size":
                     System.out.println(ARRAY_STORAGE.size());
                     break;
                 case "save":
                     r = new Resume(uuid, fullName);
                     ARRAY_STORAGE.save(r);
+/*
                     printAll();
+*/
                     break;
                 case "update":
                     r = new Resume(uuid, fullName);
                     ARRAY_STORAGE.update(r);
+/*
                     printAll();
+*/
                     break;
                 case "delete":
                     ARRAY_STORAGE.delete(uuid);
+/*
                     printAll();
+*/
                     break;
                 case "get":
                     System.out.println(ARRAY_STORAGE.get(uuid));
                     break;
                 case "clear":
                     ARRAY_STORAGE.clear();
+/*
                     printAll();
+*/
                     break;
                 case "exit":
                     return;
@@ -67,6 +78,7 @@ public class MainArray {
         }
     }
 
+/*
     static void printAll() {
         Resume[] all = ARRAY_STORAGE.getAll();
         System.out.println("----------------------------");
@@ -79,4 +91,5 @@ public class MainArray {
         }
         System.out.println("----------------------------");
     }
+*/
 }
