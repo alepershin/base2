@@ -1,8 +1,8 @@
 package com.urise.webapp.storage;
 
-import com.urise.webapp.model.Resume;
-
 import java.util.*;
+
+import static com.urise.webapp.storage.AbstractArrayStorage.*;
 
 public class MapUuidStorage extends AbstractStorage {
     private Map<String, Resume> map = new HashMap<>();
@@ -13,8 +13,8 @@ public class MapUuidStorage extends AbstractStorage {
     }
 
     @Override
-    protected void doUpdate(Resume r, Object searchKey) {
-        map.put((String) searchKey, r);
+    protected void doUpdate(Resume resume, Object searchKey) {
+        map.put((String) searchKey, resume);
     }
 
     @Override
@@ -23,8 +23,8 @@ public class MapUuidStorage extends AbstractStorage {
     }
 
     @Override
-    protected void doSave(Resume r, Object uuid) {
-        map.put((String) uuid, r);
+    protected void doSave(Resume resume, Object uuid) {
+        map.put((String) uuid, resume);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class MapUuidStorage extends AbstractStorage {
 
     @Override
     public List<Resume> getAllSorted() {
-        List<Resume> list = new ArrayList<Resume>(map.values());
+        List<Resume> list = new ArrayList<>(map.values());
         Collections.sort(list);
         return list;
     }
@@ -50,8 +50,7 @@ public class MapUuidStorage extends AbstractStorage {
     }
 
     @Override
-    protected boolean isExist(Object uuid){
-        if (map.containsKey(uuid)) return true;
-        return false;
+    protected boolean isExist(Object uuid) {
+        return map.containsKey(uuid);
     }
 }

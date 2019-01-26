@@ -1,6 +1,6 @@
 package com.urise.webapp;
 
-import com.urise.webapp.model.Resume;
+import com.urise.webapp.storage.AbstractArrayStorage;
 import com.urise.webapp.storage.ArrayStorage;
 
 /**
@@ -10,9 +10,9 @@ public class MainTestArrayStorage {
     static final ArrayStorage ARRAY_STORAGE = new ArrayStorage();
 
     public static void main(String[] args) {
-        Resume r1 = new Resume("uuid1", "fullName1");
-        Resume r2 = new Resume("uuid2", "fullName2");
-        Resume r3 = new Resume("uuid3", "fullName3");
+        AbstractArrayStorage.Resume r1 = new AbstractArrayStorage.Resume("uuid1", "fullName1");
+        AbstractArrayStorage.Resume r2 = new AbstractArrayStorage.Resume("uuid2", "fullName2");
+        AbstractArrayStorage.Resume r3 = new AbstractArrayStorage.Resume("uuid3", "fullName3");
 
         ARRAY_STORAGE.save(r1);
         ARRAY_STORAGE.save(r2);

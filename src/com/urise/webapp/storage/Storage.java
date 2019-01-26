@@ -1,6 +1,6 @@
 package com.urise.webapp.storage;
 
-import com.urise.webapp.model.Resume;
+import com.urise.webapp.storage.AbstractArrayStorage.Resume;
 
 import java.util.List;
 
@@ -8,11 +8,11 @@ public interface Storage {
 
     void clear();
 
-    void update(Resume r);
+    void update(Resume resume);
 
-    void save(Resume r);
+    void save(Resume resume);
 
-    Object get(String uuid);
+    Resume get(String uuid);
 
     void delete(String uuid);
 

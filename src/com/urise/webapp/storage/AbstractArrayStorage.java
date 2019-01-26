@@ -1,10 +1,10 @@
 package com.urise.webapp.storage;
 
 import com.urise.webapp.exception.StorageException;
-import com.urise.webapp.model.Resume;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Array based storage for Resumes
@@ -36,11 +36,11 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
     }
 
     @Override
-    public void doSave(Resume r, Object searchKey) {
+    public void doSave(Resume resume, Object searchKey) {
         if (size >= STORAGE_LIMIT) {
-            throw new StorageException("Storage overflow", r.getUuid());
+            throw new StorageException("Storage overflow", resume.getUuid());
         } else {
-            insertElement(r, (Integer) searchKey);
+            insertElement(resume, (Integer) searchKey);
             size++;
         }
     }
@@ -53,8 +53,8 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
     }
 
     @Override
-    protected void doUpdate(Resume r, Object searchKey) {
-        storage[(Integer) searchKey] = r;
+    protected void doUpdate(Resume resume, Object searchKey) {
+        storage[(Integer) searchKey] = resume;
     }
 
     @Override
@@ -62,7 +62,57 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
         return (Integer) index > -1;
     }
 
-    protected abstract void insertElement(Resume r, int index);
+    protected abstract void insertElement(Resume resume, int index);
 
     protected abstract void fillDeletedElement(int index);
+
+    public static class Resume implements Comparable<Resume> {
+
+        // Unique identifier
+        private final String uuid;
+
+        private final String fullName;
+
+        public Resume(String fullName) {
+            this(UUID.randomUUID().toString(), "fullName");
+        }
+
+        public Resume(String uuid, String fullName) {
+            this.uuid = uuid;
+            this.fullName = fullName;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+
+            Resume resume = (Resume) o;
+
+            if (!uuid.equals(resume.uuid)) return false;
+            return fullName.equals(resume.fullName);
+        }
+
+        @Override
+        public int hashCode() {
+            int result = uuid.hashCode();
+            result = 31 * result + fullName.hashCode();
+            return result;
+        }
+
+        public String getUuid() {
+            return uuid;
+        }
+
+        @Override
+        public String toString() {
+            return uuid;
+        }
+
+        @Override
+        public int compareTo(Resume o) {
+            int i = fullName.compareTo(o.fullName);
+            return i != 0 ? i : uuid.compareTo(o.uuid);
+        }
+    }
 }

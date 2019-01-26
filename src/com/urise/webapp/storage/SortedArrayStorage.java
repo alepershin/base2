@@ -1,7 +1,5 @@
 package com.urise.webapp.storage;
 
-import com.urise.webapp.model.Resume;
-
 import java.util.Arrays;
 import java.util.Comparator;
 
@@ -16,10 +14,10 @@ public class SortedArrayStorage extends AbstractArrayStorage {
     }
 
     @Override
-    protected void insertElement(Resume r, int index) {
+    protected void insertElement(Resume resume, int index) {
         int i = -index - 1;
         System.arraycopy(storage, i, storage, i + 1, size - i);
-        storage[i] = r;
+        storage[i] = resume;
     }
 
     @Override

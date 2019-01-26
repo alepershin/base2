@@ -1,11 +1,11 @@
 package com.urise.webapp.storage;
 
-import com.urise.webapp.model.Resume;
-
 import java.util.*;
 
+import static com.urise.webapp.storage.AbstractArrayStorage.*;
+
 public class MapResumeStorage extends AbstractStorage {
-    private Map<Integer, Resume> map = new HashMap<>();
+    private Map<String, Resume> map = new HashMap<>();
 
     @Override
     protected Object getSearchKey(String uuid) {
@@ -13,23 +13,23 @@ public class MapResumeStorage extends AbstractStorage {
     }
 
     @Override
-    protected void doUpdate(Resume r, Object searchKey) {
-        map.put((Integer) searchKey, r);
+    protected void doUpdate(Resume resume, Object searchKey) {
+        map.put((String) searchKey, resume);
     }
 
     @Override
     protected void doDelete(Object uuid) {
-        map.remove((Integer) uuid);
+        map.remove(uuid);
     }
 
     @Override
-    protected void doSave(Resume r, Object uuid) {
-        map.put((Integer) uuid, r);
+    protected void doSave(Resume resume, Object uuid) {
+        map.put((String) uuid, resume);
     }
 
     @Override
     protected Resume doGet(Object uuid) {
-        return map.get((Integer) uuid);
+        return map.get(uuid);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class MapResumeStorage extends AbstractStorage {
 
     @Override
     public List<Resume> getAllSorted() {
-        List<Resume> list = new ArrayList<Resume>(map.values());
+        List<Resume> list = new ArrayList<>(map.values());
         Collections.sort(list);
         return list;
     }
