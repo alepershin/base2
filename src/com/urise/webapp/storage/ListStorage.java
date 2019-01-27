@@ -1,11 +1,13 @@
 package com.urise.webapp.storage;
 
+import com.urise.webapp.model.Resume;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class ListStorage extends AbstractStorage {
-    private List<AbstractArrayStorage.Resume> list = new ArrayList<>();
+    private List<Resume> list = new ArrayList<>();
 
     @Override
     protected Integer getSearchKey(String uuid) {
@@ -17,12 +19,12 @@ public class ListStorage extends AbstractStorage {
     }
 
     @Override
-    protected void doUpdate(AbstractArrayStorage.Resume resume, Object searchKey) {
+    protected void doUpdate(Resume resume, Object searchKey) {
         list.set((Integer) searchKey, resume);
     }
 
     @Override
-    protected void doSave(AbstractArrayStorage.Resume resume, Object searchKey) {
+    protected void doSave(Resume resume, Object searchKey) {
         list.add(resume);
     }
 
@@ -42,7 +44,7 @@ public class ListStorage extends AbstractStorage {
     }
 
     @Override
-    public List<AbstractArrayStorage.Resume> getAllSorted() {
+    public List<Resume> getAllSorted() {
         Collections.sort(list);
         return list;
     }
@@ -55,6 +57,11 @@ public class ListStorage extends AbstractStorage {
     @Override
     protected boolean isExist(Object searchKey) {
         return searchKey != null;
+    }
+
+    @Override
+    protected List<Resume> doCopyAll() {
+        return new ArrayList<>(list);
     }
 
 }

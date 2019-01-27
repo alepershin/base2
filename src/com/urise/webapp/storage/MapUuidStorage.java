@@ -1,8 +1,8 @@
 package com.urise.webapp.storage;
 
-import java.util.*;
+import com.urise.webapp.model.Resume;
 
-import static com.urise.webapp.storage.AbstractArrayStorage.*;
+import java.util.*;
 
 public class MapUuidStorage extends AbstractStorage {
     private Map<String, Resume> map = new HashMap<>();
@@ -52,5 +52,10 @@ public class MapUuidStorage extends AbstractStorage {
     @Override
     protected boolean isExist(Object uuid) {
         return map.containsKey(uuid);
+    }
+
+    @Override
+    protected List<Resume> doCopyAll() {
+        return Collections.emptyList();
     }
 }

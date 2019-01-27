@@ -1,6 +1,6 @@
 package com.urise.webapp;
 
-import com.urise.webapp.storage.AbstractArrayStorage;
+import com.urise.webapp.model.Resume;
 import com.urise.webapp.storage.ArrayStorage;
 import com.urise.webapp.storage.Storage;
 
@@ -18,7 +18,7 @@ public class MainArray {
 
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        AbstractArrayStorage.Resume r;
+        Resume resume;
         while (true) {
             System.out.print("Введите одну из команд - (list | save uuid | delete uuid | get uuid | clear | update uuid | exit): ");
             String[] params = reader.readLine().trim().toLowerCase().split(" ");
@@ -41,15 +41,15 @@ public class MainArray {
                     System.out.println(ARRAY_STORAGE.size());
                     break;
                 case "save":
-                    r = new AbstractArrayStorage.Resume(uuid, fullName);
-                    ARRAY_STORAGE.save(r);
+                    resume = new Resume(uuid, fullName);
+                    ARRAY_STORAGE.save(resume);
 /*
                     printAll();
 */
                     break;
                 case "update":
-                    r = new AbstractArrayStorage.Resume(uuid, fullName);
-                    ARRAY_STORAGE.update(r);
+                    resume = new Resume(uuid, fullName);
+                    ARRAY_STORAGE.update(resume);
 /*
                     printAll();
 */
@@ -65,9 +65,6 @@ public class MainArray {
                     break;
                 case "clear":
                     ARRAY_STORAGE.clear();
-/*
-                    printAll();
-*/
                     break;
                 case "exit":
                     return;
@@ -78,18 +75,4 @@ public class MainArray {
         }
     }
 
-/*
-    static void printAll() {
-        Resume[] all = ARRAY_STORAGE.getAll();
-        System.out.println("----------------------------");
-        if (all.length == 0) {
-            System.out.println("Empty");
-        } else {
-            for (Resume r : all) {
-                System.out.println(r);
-            }
-        }
-        System.out.println("----------------------------");
-    }
-*/
 }
