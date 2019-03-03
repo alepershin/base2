@@ -2,7 +2,7 @@ package com.urise.webapp.model;
 
 import java.util.List;
 
-public class ListSection extends Section{
+public class ListSection extends AbstractSection {
     private List<String> items;
 
     public ListSection(List<String> items) {
@@ -14,7 +14,17 @@ public class ListSection extends Section{
     }
 
     @Override
-    public void putContent(Object newContent) {
-        items = (List<String>) newContent;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ListSection that = (ListSection) o;
+
+        return items.equals(that.items);
+    }
+
+    @Override
+    public int hashCode() {
+        return items.hashCode();
     }
 }

@@ -1,7 +1,7 @@
 package com.urise.webapp.model;
 
-public class TextSection extends Section {
-    private String content;
+public class TextSection extends AbstractSection {
+    public String content;
 
     public TextSection(String content) {
         this.content = content;
@@ -29,10 +29,5 @@ public class TextSection extends Section {
     @Override
     public int hashCode() {
         return content.hashCode();
-    }
-
-    @Override
-    public void putContent(Object newContent) {
-        content = (String) newContent;
     }
 }
