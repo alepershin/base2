@@ -10,6 +10,11 @@ public class OrganizationSection extends AbstractSection {
     }
 
     @Override
+    public String toString() {
+        return organizations.toString();
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

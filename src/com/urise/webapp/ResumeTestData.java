@@ -180,7 +180,7 @@ public class ResumeTestData {
 
         for (SectionType type : SectionType.values()){
             System.out.println(type.getTitle());
-            System.out.println(resume.sections.get(type));
+            System.out.println(resume.sections.get(type).toString());
         }
     }
 }
