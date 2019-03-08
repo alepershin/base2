@@ -1,7 +1,7 @@
 package com.urise.webapp.model;
 
 public class TextSection extends AbstractSection {
-    public String content;
+    private final String content;
 
     public TextSection(String content) {
         this.content = content;
