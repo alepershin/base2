@@ -9,7 +9,7 @@ public class Resume implements Comparable<Resume> {
     // Unique identifier
     private final String uuid;
 
-    public final String fullName;
+    private final String fullName;
 
     public final Map<ContactType, String> contacts = new EnumMap<>(ContactType.class);
 
@@ -62,7 +62,7 @@ public class Resume implements Comparable<Resume> {
 
     @Override
     public String toString() {
-        return uuid;
+        return fullName;
     }
 
     @Override

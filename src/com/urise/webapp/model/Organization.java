@@ -1,21 +1,15 @@
 package com.urise.webapp.model;
 
-import java.time.LocalDate;
+import java.util.List;
 
 public class Organization{
-    public Link homePage;
+    private final Link homePage;
 
-    public LocalDate startDate;
-    public LocalDate endDate;
-    public String title;
-    public String description;
+    private final List<PeriodOrganization> periodOrganizationList;
 
-    public Organization(Link homePage, LocalDate startDate, LocalDate endDate, String title, String description) {
+    public Organization(Link homePage, List<PeriodOrganization> periodOrganizationList) {
         this.homePage = homePage;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.title = title;
-        this.description = description;
+        this.periodOrganizationList = periodOrganizationList;
     }
 
     @Override
@@ -26,19 +20,13 @@ public class Organization{
         Organization that = (Organization) o;
 
         if (homePage != null ? !homePage.equals(that.homePage) : that.homePage != null) return false;
-        if (startDate != null ? !startDate.equals(that.startDate) : that.startDate != null) return false;
-        if (endDate != null ? !endDate.equals(that.endDate) : that.endDate != null) return false;
-        if (!title.equals(that.title)) return false;
-        return description.equals(that.description);
+        return periodOrganizationList.equals(that.periodOrganizationList);
     }
 
     @Override
     public int hashCode() {
         int result = homePage != null ? homePage.hashCode() : 0;
-        result = 31 * result + (startDate != null ? startDate.hashCode() : 0);
-        result = 31 * result + (endDate != null ? endDate.hashCode() : 0);
-        result = 31 * result + title.hashCode();
-        result = 31 * result + description.hashCode();
+        result = 31 * result + periodOrganizationList.hashCode();
         return result;
     }
 
@@ -46,10 +34,7 @@ public class Organization{
     public String toString() {
         return "Organization{" +
                 "homePage=" + homePage +
-                ", startDate=" + startDate +
-                ", endDate=" + endDate +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
+                ", periodOrganizationList=" + periodOrganizationList +
                 '}';
     }
 }
