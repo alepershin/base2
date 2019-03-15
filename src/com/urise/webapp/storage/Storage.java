@@ -2,13 +2,14 @@ package com.urise.webapp.storage;
 
 import com.urise.webapp.model.Resume;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface Storage {
 
     void clear();
 
-    void update(Resume resume);
+    void update(Resume resume) throws IOException;
 
     void save(Resume resume);
 

@@ -1,6 +1,7 @@
 package com.urise.webapp;
 
 import com.urise.webapp.model.*;
+import com.urise.webapp.storage.ArrayStorage;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -12,20 +13,22 @@ import static com.urise.webapp.model.SectionType.*;
 import static java.time.Month.*;
 
 public class ResumeTestData {
+    static final ArrayStorage storage = new ArrayStorage();
+
     public static void main(String[] args) {
-        Resume resume = new Resume("Григорий Кислин");
-        resume.contacts.put(PHONE, "+7(921) 855-0482");
-        resume.contacts.put(SKYPE, "grigory.kislin");
-        resume.contacts.put(MAIL, "gkislin@yandex.ru");
-        resume.contacts.put(GITHUB, "https://github.com/gkislin");
-        resume.contacts.put(STACKOVERFLOW, "548473");
-        resume.contacts.put(HOMEPAGE, "http://gkislin.ru/");
+        Resume RESUME_1 = new Resume("uuid1", "Григорий Кислин");
+        RESUME_1.contacts.put(PHONE, "+7(921) 855-0482");
+        RESUME_1.contacts.put(SKYPE, "grigory.kislin");
+        RESUME_1.contacts.put(MAIL, "gkislin@yandex.ru");
+        RESUME_1.contacts.put(GITHUB, "https://github.com/gkislin");
+        RESUME_1.contacts.put(STACKOVERFLOW, "548473");
+        RESUME_1.contacts.put(HOMEPAGE, "http://gkislin.ru/");
 
         TextSection textSection = new TextSection("Ведущий стажировок и корпоративного обучения по Java Web и Enterprise технологиям");
-        resume.sections.put(OBJECTIVE, textSection);
+        RESUME_1.sections.put(OBJECTIVE, textSection);
 
         textSection = new TextSection("Аналитический склад ума, сильная логика, креативность, инициативность. Пурист кода и архитектуры.");
-        resume.sections.put(PERSONAL, textSection);
+        RESUME_1.sections.put(PERSONAL, textSection);
 
         ListSection listSection = new ListSection(Arrays.asList(
                 "С 2013 года: разработка проектов \"Разработка Web приложения\",\"Java Enterprise\", \"Многомодульный maven. Многопоточность. XML (JAXB/StAX). Веб сервисы (JAX-RS/SOAP). Удаленное взаимодействие (JMS/AKKA)\". Организация онлайн стажировок и ведение проектов. Более 1000 выпускников.",
@@ -34,7 +37,7 @@ public class ResumeTestData {
                 "Реализация c нуля Rich Internet Application приложения на стеке технологий JPA, Spring, Spring-MVC, GWT, ExtGWT (GXT), Commet, HTML5, Highstock для алгоритмического трейдинга.",
                 "Создание JavaEE фреймворка для отказоустойчивого взаимодействия слабо-связанных сервисов (SOA-base архитектура, JAX-WS, JMS, AS Glassfish). Сбор статистики сервисов и информации о состоянии через систему мониторинга Nagios. Реализация онлайн клиента для администрирования и мониторинга системы по JMX (Jython/ Django).",
                 "Реализация протоколов по приему платежей всех основных платежных системы России (Cyberplat, Eport, Chronopay, Сбербанк), Белоруcсии(Erip, Osmp) и Никарагуа."));
-        resume.sections.put(ACHIEVEMENT, listSection);
+        RESUME_1.sections.put(ACHIEVEMENT, listSection);
 
         listSection = new ListSection(Arrays.asList(
                 "JEE AS: GlassFish (v2.1, v3), OC4J, JBoss, Tomcat, Jetty, WebLogic, WSO2",
@@ -53,7 +56,7 @@ public class ResumeTestData {
                 "Отличное знание и опыт применения концепций ООП, SOA, шаблонов",
                 "проектрирования, архитектурных шаблонов, UML, функционального программирования",
                 "Родной русский, английский \"upper intermediate\""));
-        resume.sections.put(QUALIFICATIONS, listSection);
+        RESUME_1.sections.put(QUALIFICATIONS, listSection);
 
         ArrayList<Organization> itemExperience = new ArrayList<>();
 
@@ -115,7 +118,7 @@ public class ResumeTestData {
         itemExperience.add(organization);
 
         OrganizationSection organizationSection = new OrganizationSection(itemExperience);
-        resume.sections.put(EXPERIENCE, organizationSection);
+        RESUME_1.sections.put(EXPERIENCE, organizationSection);
 
         ArrayList<Organization> itemEducation = new ArrayList<>();
 
@@ -165,20 +168,23 @@ public class ResumeTestData {
         itemEducation.add(organization);
 
         organizationSection = new OrganizationSection(itemEducation);
-        resume.sections.put(EDUCATION, organizationSection);
+        RESUME_1.sections.put(EDUCATION, organizationSection);
 
-        System.out.println(resume.toString());
-        System.out.println("Тел.: " + resume.getContact(PHONE));
-        System.out.println("Skype: " + resume.getContact(SKYPE));
-        System.out.println("Почта: " + resume.getContact(MAIL));
-        System.out.println("Профиль LinkedIn " + resume.getContact(LINKEDIN));
-        System.out.println("Профиль GitHub " + resume.getContact(GITHUB));
-        System.out.println("Профиль Stackoverflow " + resume.getContact(STACKOVERFLOW));
-        System.out.println("Домашняя страница: " + resume.getContact(HOMEPAGE));
+        storage.clear();
+        storage.save(RESUME_1);
 
-        for (SectionType type : SectionType.values()) {
-            System.out.println(type.getTitle());
-            System.out.println(resume.sections.get(type).toString());
-        }
+        Resume RESUME_2 = new Resume("uuid2", "Першин Алексей");
+        RESUME_2.contacts.put(PHONE, "+79512041892");
+        RESUME_2.contacts.put(MAIL, "alepershin@mail.ru");
+
+        Resume RESUME_3 = new Resume("uuid3", "fullName3");
+        Resume RESUME_4 = new Resume("uuid4", "fullName4");
+
+        storage.save(RESUME_2);
+        storage.save(RESUME_3);
+        System.out.println(storage.size());
+        storage.save(RESUME_4);
+        System.out.println(storage.size());
+
     }
 }
