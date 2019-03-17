@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 public abstract class AbstractStorage<SK> implements Storage {
     private static final Logger LOG = Logger.getLogger(AbstractStorage.class.getName());
 
-    protected abstract void doDelete(SK searchKey);
+    protected abstract void doDelete(SK searchKey) throws IOException;
 
     protected abstract SK getSearchKey(String uuid);
 
@@ -20,11 +20,11 @@ public abstract class AbstractStorage<SK> implements Storage {
 
     protected abstract void doSave(Resume resume, SK searchKey);
 
-    protected abstract Resume doGet(SK searchKey);
+    protected abstract Resume doGet(SK searchKey) throws IOException;
 
     protected abstract boolean isExist(SK searchKey);
 
-    protected abstract List<Resume> doCopyAll();
+    protected abstract List<Resume> doCopyAll() throws IOException;
 
     public void update(Resume resume) throws IOException {
         LOG.info("Update " + resume);
@@ -38,20 +38,20 @@ public abstract class AbstractStorage<SK> implements Storage {
         doSave(resume, searchKey);
     }
 
-    public void delete(String uuid) {
+    public void delete(String uuid) throws IOException {
         LOG.info("Delete " + uuid);
         SK searchKey = getExistedSearchKey(uuid);
         doDelete(searchKey);
     }
 
-    public Resume get(String uuid) {
+    public Resume get(String uuid) throws IOException {
         LOG.info("Get " + uuid);
         SK searchKey = getExistedSearchKey(uuid);
-        return (Resume) doGet(searchKey);
+        return doGet(searchKey);
     }
 
     @Override
-    public List<Resume> getAllSorted() {
+    public List<Resume> getAllSorted() throws IOException {
         LOG.info("getAllSorted");
         List<Resume> list = doCopyAll();
         Collections.sort(list);

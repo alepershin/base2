@@ -11,7 +11,7 @@ import java.util.Objects;
 public abstract class AbstractFileStorage extends AbstractStorage<File> {
     private File directory;
 
-    protected abstract Resume doRead(File file);
+    protected abstract Resume doRead(File file) throws IOException;
 
     protected abstract void doWrite(Resume r, File file) throws IOException;
 
@@ -28,8 +28,10 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
 
     @Override
     public void clear() {
-        for (File file : directory.listFiles()) {
-            file.delete();
+        if (directory.listFiles() != null) {
+            for (File file : directory.listFiles()) {
+                file.delete();
+            }
         }
     }
 
@@ -68,20 +70,22 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
     }
 
     @Override
-    protected Resume doGet(File file) {
+    protected Resume doGet(File file) throws IOException {
         return doRead(file);
     }
 
     @Override
-    protected void doDelete(File file) {
+    protected void doDelete(File file) throws IOException {
         file.delete();
     }
 
     @Override
-    protected List<Resume> doCopyAll() {
+    protected List<Resume> doCopyAll() throws IOException {
         List<Resume> list = null;
-        for(File file : directory.listFiles()){
-            list.add(doGet(file));
+        if (directory.listFiles() != null) {
+            for (File file : directory.listFiles()) {
+                list.add(doGet(file));
+            }
         }
         return list;
     }

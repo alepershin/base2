@@ -13,33 +13,33 @@ import static com.urise.webapp.model.SectionType.*;
 import static java.time.Month.*;
 
 public class ResumeTestData {
-    static final ArrayStorage storage = new ArrayStorage();
+    static ArrayStorage storage = new ArrayStorage();
 
     public static void main(String[] args) {
-        Resume RESUME_1 = new Resume("uuid1", "Григорий Кислин");
-        RESUME_1.contacts.put(PHONE, "+7(921) 855-0482");
-        RESUME_1.contacts.put(SKYPE, "grigory.kislin");
-        RESUME_1.contacts.put(MAIL, "gkislin@yandex.ru");
-        RESUME_1.contacts.put(GITHUB, "https://github.com/gkislin");
-        RESUME_1.contacts.put(STACKOVERFLOW, "548473");
-        RESUME_1.contacts.put(HOMEPAGE, "http://gkislin.ru/");
+        Resume resume1 = new Resume("uuid1", "Григорий Кислин");
+        resume1.contacts.put(PHONE, "+7(921) 855-0482");
+        resume1.contacts.put(SKYPE, "grigory.kislin");
+        resume1.contacts.put(MAIL, "gkislin@yandex.ru");
+        resume1.contacts.put(GITHUB, "https://github.com/gkislin");
+        resume1.contacts.put(STACKOVERFLOW, "548473");
+        resume1.contacts.put(HOMEPAGE, "http://gkislin.ru/");
 
-        TextSection textSection = new TextSection("Ведущий стажировок и корпоративного обучения по Java Web и Enterprise технологиям");
-        RESUME_1.sections.put(OBJECTIVE, textSection);
+        TextSection objective = new TextSection("Ведущий стажировок и корпоративного обучения по Java Web и Enterprise технологиям");
+        resume1.sections.put(OBJECTIVE, objective);
 
-        textSection = new TextSection("Аналитический склад ума, сильная логика, креативность, инициативность. Пурист кода и архитектуры.");
-        RESUME_1.sections.put(PERSONAL, textSection);
+        TextSection personal = new TextSection("Аналитический склад ума, сильная логика, креативность, инициативность. Пурист кода и архитектуры.");
+        resume1.sections.put(PERSONAL, personal);
 
-        ListSection listSection = new ListSection(Arrays.asList(
+        ListSection achievement = new ListSection(Arrays.asList(
                 "С 2013 года: разработка проектов \"Разработка Web приложения\",\"Java Enterprise\", \"Многомодульный maven. Многопоточность. XML (JAXB/StAX). Веб сервисы (JAX-RS/SOAP). Удаленное взаимодействие (JMS/AKKA)\". Организация онлайн стажировок и ведение проектов. Более 1000 выпускников.",
                 "Реализация двухфакторной аутентификации для онлайн платформы управления проектами Wrike. Интеграция с Twilio, DuoSecurity, Google Authenticator, Jira, Zendesk.",
                 "Налаживание процесса разработки и непрерывной интеграции ERP системы River BPM. Интеграция с 1С, Bonita BPM, CMIS, LDAP. Разработка приложения управления окружением на стеке: Scala/Play/Anorm/JQuery. Разработка SSO аутентификации и авторизации различных ERP модулей, интеграция CIFS/SMB java сервера.",
                 "Реализация c нуля Rich Internet Application приложения на стеке технологий JPA, Spring, Spring-MVC, GWT, ExtGWT (GXT), Commet, HTML5, Highstock для алгоритмического трейдинга.",
                 "Создание JavaEE фреймворка для отказоустойчивого взаимодействия слабо-связанных сервисов (SOA-base архитектура, JAX-WS, JMS, AS Glassfish). Сбор статистики сервисов и информации о состоянии через систему мониторинга Nagios. Реализация онлайн клиента для администрирования и мониторинга системы по JMX (Jython/ Django).",
                 "Реализация протоколов по приему платежей всех основных платежных системы России (Cyberplat, Eport, Chronopay, Сбербанк), Белоруcсии(Erip, Osmp) и Никарагуа."));
-        RESUME_1.sections.put(ACHIEVEMENT, listSection);
+        resume1.sections.put(ACHIEVEMENT, achievement);
 
-        listSection = new ListSection(Arrays.asList(
+        ListSection qualifications = new ListSection(Arrays.asList(
                 "JEE AS: GlassFish (v2.1, v3), OC4J, JBoss, Tomcat, Jetty, WebLogic, WSO2",
                 "Version control: Subversion, Git, Mercury, ClearCase, Perforce",
                 "DB: PostgreSQL(наследование, pgplsql, PL/Python), Redis (Jedis), H2, Oracle",
@@ -56,7 +56,7 @@ public class ResumeTestData {
                 "Отличное знание и опыт применения концепций ООП, SOA, шаблонов",
                 "проектрирования, архитектурных шаблонов, UML, функционального программирования",
                 "Родной русский, английский \"upper intermediate\""));
-        RESUME_1.sections.put(QUALIFICATIONS, listSection);
+        resume1.sections.put(QUALIFICATIONS, qualifications);
 
         ArrayList<Organization> itemExperience = new ArrayList<>();
 
@@ -118,7 +118,7 @@ public class ResumeTestData {
         itemExperience.add(organization);
 
         OrganizationSection organizationSection = new OrganizationSection(itemExperience);
-        RESUME_1.sections.put(EXPERIENCE, organizationSection);
+        resume1.sections.put(EXPERIENCE, organizationSection);
 
         ArrayList<Organization> itemEducation = new ArrayList<>();
 
@@ -168,22 +168,22 @@ public class ResumeTestData {
         itemEducation.add(organization);
 
         organizationSection = new OrganizationSection(itemEducation);
-        RESUME_1.sections.put(EDUCATION, organizationSection);
+        resume1.sections.put(EDUCATION, organizationSection);
 
         storage.clear();
-        storage.save(RESUME_1);
+        storage.save(resume1);
 
-        Resume RESUME_2 = new Resume("uuid2", "Першин Алексей");
-        RESUME_2.contacts.put(PHONE, "+79512041892");
-        RESUME_2.contacts.put(MAIL, "alepershin@mail.ru");
+        Resume resume2 = new Resume("uuid2", "Першин Алексей");
+        resume2.contacts.put(PHONE, "+79512041892");
+        resume2.contacts.put(MAIL, "alepershin@mail.ru");
 
-        Resume RESUME_3 = new Resume("uuid3", "fullName3");
-        Resume RESUME_4 = new Resume("uuid4", "fullName4");
+        Resume resume3 = new Resume("uuid3", "fullName3");
+        Resume resume4 = new Resume("uuid4", "fullName4");
 
-        storage.save(RESUME_2);
-        storage.save(RESUME_3);
+        storage.save(resume2);
+        storage.save(resume3);
         System.out.println(storage.size());
-        storage.save(RESUME_4);
+        storage.save(resume4);
         System.out.println(storage.size());
 
     }

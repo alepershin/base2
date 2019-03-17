@@ -7,17 +7,17 @@ import java.util.List;
 
 public interface Storage {
 
-    void clear();
+    void clear() throws IOException;
 
     void update(Resume resume) throws IOException;
 
     void save(Resume resume);
 
-    Resume get(String uuid);
+    Resume get(String uuid) throws IOException;
 
-    void delete(String uuid);
+    void delete(String uuid) throws IOException;
 
-    List<Resume> getAllSorted();
+    List<Resume> getAllSorted() throws IOException;
 
     int size();
 }
