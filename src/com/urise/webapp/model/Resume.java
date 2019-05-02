@@ -1,11 +1,14 @@
 package com.urise.webapp.model;
 
+import java.io.Serializable;
 import java.util.EnumMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 
-public class Resume implements Comparable<Resume> {
+public class Resume implements Comparable<Resume>, Serializable {
+    private static final long serialVersionUID = 1L;
+
     // Unique identifier
     private final String uuid;
 
@@ -13,7 +16,7 @@ public class Resume implements Comparable<Resume> {
 
     public final Map<ContactType, String> contacts = new EnumMap<>(ContactType.class);
 
-    public final Map<SectionType, AbstractSection> sections = new EnumMap<>(SectionType.class);
+    public final Map<SectionType, Section> sections = new EnumMap<>(SectionType.class);
 
     public Resume(String fullName) {
         this(UUID.randomUUID().toString(), fullName);
@@ -34,7 +37,7 @@ public class Resume implements Comparable<Resume> {
         return contacts.get(type);
     }
 
-    public AbstractSection getSection(SectionType type){
+    public Section getSection(SectionType type){
         return sections.get(type);
     }
 

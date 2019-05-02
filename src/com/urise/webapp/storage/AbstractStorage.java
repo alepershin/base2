@@ -2,6 +2,7 @@ package com.urise.webapp.storage;
 
 import com.urise.webapp.exception.ExistStorageException;
 import com.urise.webapp.exception.NotExistStorageException;
+import com.urise.webapp.exception.StorageException;
 import com.urise.webapp.model.Resume;
 
 import java.io.IOException;
@@ -16,7 +17,7 @@ public abstract class AbstractStorage<SK> implements Storage {
 
     protected abstract SK getSearchKey(String uuid);
 
-    protected abstract void doUpdate(Resume resume, SK searchKey) throws IOException;
+    protected abstract void doUpdate(Resume resume, SK searchKey) throws IOException, StorageException;
 
     protected abstract void doSave(Resume resume, SK searchKey);
 
