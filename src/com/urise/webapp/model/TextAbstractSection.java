@@ -1,11 +1,11 @@
 package com.urise.webapp.model;
 
-public class TextSection extends Section {
+public class TextAbstractSection extends AbstractSection {
     private static final long serialVersionUID = 1L;
 
     private final String content;
 
-    public TextSection(String content) {
+    public TextAbstractSection(String content) {
         this.content = content;
     }
 
@@ -23,7 +23,7 @@ public class TextSection extends Section {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        TextSection that = (TextSection) o;
+        TextAbstractSection that = (TextAbstractSection) o;
 
         return content.equals(that.content);
     }
