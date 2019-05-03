@@ -7,18 +7,18 @@ import java.util.List;
 import java.util.Objects;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-public class OrganizationAbstractSection extends AbstractSection {
+public class OrganizationSection extends AbstractSection {
     private static final long serialVersionUID = 1L;
 
     private List<Organization> organizations;
 
-    public OrganizationAbstractSection() {}
+    public OrganizationSection() {}
 
-    public OrganizationAbstractSection(Organization... organizations) {
+    public OrganizationSection(Organization... organizations) {
         this(Arrays.asList(organizations));
     }
 
-    public OrganizationAbstractSection(List<Organization> organizations) {
+    public OrganizationSection(List<Organization> organizations) {
         Objects.requireNonNull(organizations, "organizations must not be null");
         this.organizations = organizations;
     }
@@ -32,7 +32,7 @@ public class OrganizationAbstractSection extends AbstractSection {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        OrganizationAbstractSection that = (OrganizationAbstractSection) o;
+        OrganizationSection that = (OrganizationSection) o;
 
         return organizations.equals(that.organizations);
 

@@ -9,7 +9,7 @@ public class MainFile {
             for (File file : files) {
                 System.out.println(offset + file.getName());
                 if (file.isDirectory()){
-                    printDirectoryDeeply(file, offset + "    ");
+                    printDirectoryDeeply(file, offset + "\t");
                 }
             }
         }
